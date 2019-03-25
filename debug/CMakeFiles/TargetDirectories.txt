@@ -1,4 +1,0 @@
-/home/wmbat/Documents/programming/cpp/wmbat's_bazaar/debug/CMakeFiles/rebuild_cache.dir
-/home/wmbat/Documents/programming/cpp/wmbat's_bazaar/debug/CMakeFiles/edit_cache.dir
-/home/wmbat/Documents/programming/cpp/wmbat's_bazaar/debug/external/spdlog/CMakeFiles/rebuild_cache.dir
-/home/wmbat/Documents/programming/cpp/wmbat's_bazaar/debug/external/spdlog/CMakeFiles/edit_cache.dir
