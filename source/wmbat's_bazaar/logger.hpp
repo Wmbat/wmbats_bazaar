@@ -16,35 +16,26 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef BAZAAR_UTILITIES_MESSAGE_HPP
-#define BAZAAR_UTILITIES_MESSAGE_HPP
-
-#include <vector>
-
-#include "delegate.hpp"
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
 
 namespace bzr
 {
-    template<class C>
-    class message_handler
+    class logger
     {
     public:
-        void add_callback( const delegate<void( C )>& callback )
+        inline static void init( const char* logger_name, const char* display_pattern )
         {
-            callbacks_.push_back( callback );
+            logger_ = spdlog::stdout_color_mt( logger_name );
+            logger_->set_pattern( display_pattern );
         }
-        
-        void send_message( const C& message )
+
+        inline static spdlog::logger& get_logger( )
         {
-            for( auto& delegate : callbacks_ )
-            {
-                delegate( message );
-            }
+            return *logger_;
         }
-    
+
     private:
-        std::vector<delegate<void( C )>> callbacks_;
+        inline static std::shared_ptr<spdlog::logger> logger_;
     };
 }
-
-#endif //BAZAAR_UTILITIES_MESSAGE_HPP
