@@ -10,9 +10,9 @@ target_compile_features( wmbats_bazaar INTERFACE cxx_std_17 )
 target_link_libraries( wmbats_bazaar INTERFACE spdlog )
 
 target_sources( wmbats_bazaar
-    INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/source/wmbat's_bazaar/delegate.hpp"
-    INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/source/wmbat's_bazaar/file_io.hpp"
-    INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/source/wmbat's_bazaar/logger.hpp"
-    INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/source/wmbat's_bazaar/message.hpp" )
+    INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/source/wmbats_bazaar/delegate.hpp"
+    INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/source/wmbats_bazaar/file_io.hpp"
+    INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/source/wmbats_bazaar/logger.hpp"
+    INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/source/wmbats_bazaar/message.hpp" )
 
 target_include_directories( wmbats_bazaar INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/source" )
