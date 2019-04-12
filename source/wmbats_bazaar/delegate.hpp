@@ -44,7 +44,7 @@ namespace bzr
         delegate( ::std::nullptr_t const ) noexcept
             :
             delegate( )
-        { }bzr
+        { }
         
         template<class C, typename = std::enable_if_t<std::is_class<C>::value>>
         explicit delegate( C const *const o ) noexcept
@@ -374,7 +374,7 @@ namespace bzr
             {
                 auto const seed( hash<void *>( )(d.object_ptr_));
                 
-                return hash<typename ::lcl::delegate<R( A... )>::stub_ptr_type>( )(
+                return hash<typename ::bzr::delegate<R( A... )>::stub_ptr_type>( )(
                     d.stub_ptr_ ) + 0x9e3779b9 + ( seed << 6 ) + ( seed >> 2 );
             }
         };
