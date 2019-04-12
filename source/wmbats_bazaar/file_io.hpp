@@ -19,21 +19,21 @@
 #ifndef BAZAAR_UTILITIES_FILE_IO_H
 #define BAZAAR_UTILITIES_FILE_IO_H
 
-#include <stdexcept>
+#include <string_view>
 #include <fstream>
 #include <vector>
 
 namespace bzr
 {
-    inline const std::string read_from_file( const std::string& filepath )
+    inline const std::string read_from_file( const std::string_view filepath )
     {
-        std::ifstream file( filepath );
+        std::ifstream file( std::string{ filepath } );
         std::string str;
 
         if( !file.is_open() )
-            throw std::runtime_error{ "Error loading file at location: " + filepath + "." };
+            throw std::runtime_error{ "Error loading file at location: " + std::string{ filepath } + "." };
         else if( !file.good() )
-            throw std::runtime_error{ "Error reading file: " + filepath + "." };
+            throw std::runtime_error{ "Error reading file: " + std::string{ filepath } + "." };
 
         char c;
         while( file.get( c ) )
@@ -44,15 +44,15 @@ namespace bzr
         return str;
     }
 
-    inline const std::string read_from_binary_file( const std::string& filepath )
+    inline const std::string read_from_binary_file( const std::string_view filepath )
     {
-        std::ifstream file( filepath, std::ios::binary );
+        std::ifstream file( std::string{ filepath }, std::ios::binary );
         std::string str;
 
         if( !file.is_open() )
-            throw std::runtime_error{ "Error loading file at location: " + filepath + "." };
+            throw std::runtime_error{ "Error loading file at location: " + std::string{ filepath } + "." };
         else if( !file.good() )
-            throw std::runtime_error{ "Error reading file: " + filepath + "." };
+            throw std::runtime_error{ "Error reading file: " + std::string{ filepath } + "." };
 
         char c;
         while( file.get( c ) )
