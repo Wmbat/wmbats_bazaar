@@ -16,6 +16,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef BAZAAR_LOGGER_HPP
+#define BAZAAR_LOGGER_HPP
+
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 
@@ -39,3 +42,5 @@ namespace bzr
         inline static std::shared_ptr<spdlog::logger> logger_;
     };
 }
+
+#endif // BAZAAR_LOGGER_HPP
