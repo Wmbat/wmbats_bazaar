@@ -19,22 +19,41 @@
 #ifndef BAZAAR_UTILITIES_MESSAGE_HPP
 #define BAZAAR_UTILITIES_MESSAGE_HPP
 
-#include <vector>
-
 #include "delegate.hpp"
+
+#include <vector>
 
 namespace bzr
 {
-    template<class C>
+    template<typename T>
     class message_handler
     {
     public:
-        void add_callback( const delegate<void( C )>& callback )
+        message_handler& operator+=( const delegate<void( T )>& callback )
+        {
+            callbacks_.push_back( callback );
+        }
+
+        message_handler& operator-=( const delegate<void( T )>& callback )
+        {
+            auto to_remove = std::find( 
+                callbacks_.begin, 
+                callbacks_.end, 
+                [&callback]( const delegate<void( T )>& local )
+                { 
+                    return local = callback;
+                }
+            );
+
+            callbacks_.erase( to_remove );
+        }
+
+        void add_callback( const delegate<void( T )>& callback )
         {
             callbacks_.push_back( callback );
         }
         
-        void send_message( const C& message )
+        void send_message( const T& message )
         {
             for( auto& delegate : callbacks_ )
             {
@@ -43,7 +62,7 @@ namespace bzr
         }
     
     private:
-        std::vector<delegate<void( C )>> callbacks_;
+        std::vector<delegate<void( T )>> callbacks_;
     };
 }
 
