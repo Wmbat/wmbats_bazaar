@@ -32,6 +32,8 @@ namespace bzr
         message_handler& operator+=( const delegate<void( T )>& callback )
         {
             callbacks_.push_back( callback );
+
+            return callbacks_;
         }
 
         message_handler& operator-=( const delegate<void( T )>& callback )
@@ -46,6 +48,8 @@ namespace bzr
             );
 
             callbacks_.erase( to_remove );
+
+            return callbacks_;
         }
 
         void add_callback( const delegate<void( T )>& callback )
