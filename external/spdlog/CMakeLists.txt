@@ -19,5 +19,19 @@ project( spdlog )
 
 add_library( spdlog INTERFACE )
 
+target_compile_options( spdlog 
+    INTERFACE
+# Set C++ version
+        $<$<CXX_COMPILER_ID:GNU>:-std=c++2a>
+        $<$<CXX_COMPILER_ID:MSVC>:-std:c++latest>
+# Set Flags
+        $<$<CXX_COMPILER_ID:GNU>:-fconcepts>
+# Set Debug Flags
+        $<$<AND:$<CXX_COMPILER_ID:GNU>,$<CONFIG:DEBUG>>:-o0>
+        $<$<AND:$<CXX_COMPILER_ID:GNU>,$<CONFIG:DEBUG>>:-w>
+# Set Release Flags
+        $<$<AND:$<CXX_COMPILER_ID:GNU>,$<CONFIG:RELEASE>>:-o3>
+)
+
 target_include_directories( spdlog INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/include" )
 target_compile_features( spdlog INTERFACE cxx_std_17 )
