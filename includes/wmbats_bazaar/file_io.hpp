@@ -63,7 +63,7 @@ namespace bzr
         return str;
     }
 
-    inline const void write_to_file( const std::string& filepath, const std::string& data )
+    inline void write_to_file( const std::string& filepath, const std::string& data )
     {
         std::ofstream file( filepath, std::ios::binary );
 
