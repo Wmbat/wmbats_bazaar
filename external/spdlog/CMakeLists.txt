@@ -28,7 +28,6 @@ target_compile_options( spdlog
         $<$<CXX_COMPILER_ID:GNU>:-fconcepts>
 # Set Debug Flags
         $<$<AND:$<CXX_COMPILER_ID:GNU>,$<CONFIG:DEBUG>>:-o0>
-        $<$<AND:$<CXX_COMPILER_ID:GNU>,$<CONFIG:DEBUG>>:-w>
 # Set Release Flags
         $<$<AND:$<CXX_COMPILER_ID:GNU>,$<CONFIG:RELEASE>>:-o3>
 )
