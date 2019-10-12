@@ -106,7 +106,7 @@ namespace bzr
          {
             if ( show_info )
             {
-               log_->info( msg.c_str(), args );
+               log_->info( msg, args );
             }
          }
          
@@ -114,15 +114,15 @@ namespace bzr
          {
             if ( show_warnings )
             {
-               log_->warn( msg.c_str(), args );
+               log_->warn( msg, args );
             }
          }
 
-         if constexpr ( level = severity_level::e_critical )
+         if constexpr ( level == severity_level::e_critical )
          {
             if ( show_critical )
             {
-               log_->critical( msg.c_str(), args );
+               log_->critical( msg, args );
             }
          }
 
@@ -130,7 +130,7 @@ namespace bzr
          {
             if ( show_errors )
             {
-               log_->error( msg.c_str(), args );
+               log_->error( msg, args );
             }
          }
       }
