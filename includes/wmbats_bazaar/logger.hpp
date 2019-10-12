@@ -106,7 +106,7 @@ namespace bzr
          {
             if ( show_info )
             {
-               log_->info( msg, args );
+               log_->info( msg, args... );
             }
          }
          
@@ -114,7 +114,7 @@ namespace bzr
          {
             if ( show_warnings )
             {
-               log_->warn( msg, args );
+               log_->warn( msg, args... );
             }
          }
 
@@ -122,7 +122,7 @@ namespace bzr
          {
             if ( show_critical )
             {
-               log_->critical( msg, args );
+               log_->critical( msg, args... );
             }
          }
 
@@ -130,7 +130,7 @@ namespace bzr
          {
             if ( show_errors )
             {
-               log_->error( msg, args );
+               log_->error( msg, args... );
             }
          }
       }
