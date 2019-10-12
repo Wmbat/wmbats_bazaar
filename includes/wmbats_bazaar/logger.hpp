@@ -82,7 +82,7 @@ namespace bzr
             }
          }
 
-         if constexpr ( level = severity_level::e_critical )
+         if constexpr ( level == severity_level::e_critical )
          {
             if ( show_critical )
             {
@@ -99,7 +99,7 @@ namespace bzr
          }
       }
 
-      template<severity_level, typename... arguments>
+      template<severity_level level, typename... arguments>
       inline void log( std::string_view msg, arguments const& ...args )
       {
          if constexpr ( level == severity_level::e_info )
