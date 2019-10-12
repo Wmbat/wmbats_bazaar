@@ -25,26 +25,26 @@
 
 namespace bzr
 {
-    template<typename T>
-    class message_handler
-    {
-    public:
-        void add_callback( const delegate<void( T )>& callback )
-        {
-            callbacks_.push_back( callback );
-        }
-        
-        void send_message( const T& message )
-        {
-            for( auto& delegate : callbacks_ )
-            {
-                delegate( message );
-            }
-        }
-    
-    private:
-        std::vector<delegate<void( T )>> callbacks_;
-    };
+   template<typename T>
+   class message_handler
+   {
+   public:
+      void add_callback( const delegate<void( T )>& callback )
+      {
+         callbacks_.push_back( callback );
+      }
+      
+      void send_message( const T& message )
+      {
+         for( auto& delegate : callbacks_ )
+         {
+            delegate( message );
+         }
+      }
+   
+   private:
+      std::vector<delegate<void( T )>> callbacks_;
+   };
 }
 
 #endif //BAZAAR_UTILITIES_MESSAGE_HPP
