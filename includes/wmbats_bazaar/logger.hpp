@@ -63,42 +63,6 @@ namespace bzr
          show_errors = true;
       }
 
-      template<severity_level level>
-      inline void log( std::string const& msg )
-      {
-         if constexpr ( level == severity_level::e_info )
-         {
-            if ( show_info )
-            {
-               log_->info( msg );
-            }
-         }
-         
-         if constexpr ( level == severity_level::e_warning )
-         {
-            if ( show_warnings )
-            {
-               log_->warn( msg );
-            }
-         }
-
-         if constexpr ( level == severity_level::e_critical )
-         {
-            if ( show_critical )
-            {
-               log_->critical( msg );
-            }
-         }
-
-         if constexpr ( level == severity_level::e_error )
-         {
-            if ( show_errors )
-            {
-               log_->error( msg );
-            }
-         }
-      }
-
       template<severity_level level, typename... arguments>
       inline void log( std::string_view msg, arguments const& ...args )
       {
