@@ -28,19 +28,6 @@ namespace bzr
    {
    public:
       /**
-       * @brief An enum to express the severity
-       * of a message.
-       */
-      enum class severity_level : size_t
-      {
-         e_info        = 0,
-         e_warning     = 1,
-         e_critical    = 2,
-         e_error       = 3
-      };
-
-   public:
-      /**
        * @brief Default Constructor.
        */
       logger( ) = default;
@@ -63,53 +50,60 @@ namespace bzr
          show_errors = true;
       }
 
-      template<severity_level level, typename... arguments>
-      inline void log( std::string_view msg, arguments const& ...args )
+      /**
+       * @brief Log informational messages.
+       *
+       * @param msg The message to log.
+       */
+      inline void log_info( std::string const& msg )
       {
-         if constexpr ( level == severity_level::e_info )
+         if ( show_info )
          {
-            if ( show_info )
-            {
-               log_->info( msg, args... );
-            }
-         }
-         
-         if constexpr ( level == severity_level::e_warning )
-         {
-            if ( show_warnings )
-            {
-               log_->warn( msg, args... );
-            }
-         }
-
-         if constexpr ( level == severity_level::e_critical )
-         {
-            if ( show_critical )
-            {
-               log_->critical( msg, args... );
-            }
-         }
-
-         if constexpr ( level == severity_level::e_error )
-         {
-            if ( show_errors )
-            {
-               log_->error( msg, args... );
-            }
+            log_->info( msg );
          }
       }
 
-      [[deprecated]]
-      inline static void init( const char* logger_name, const char* display_pattern )
+      inline void log_warning( std::string const& msg )
       {
-         logger_ = spdlog::stdout_color_mt( logger_name );
-         logger_->set_pattern( display_pattern );
+         if ( show_warnings )
+         {
+            log_->warn( msg );
+         }
       }
 
-      [[deprecated]]
-      inline static spdlog::logger& get_logger( )
+      inline void log_error( std::string const& msg )
       {
-         return *logger_;
+         if ( show_errors )
+         {
+            log_->error( msg )
+         }
+      }
+
+      template<typename... arguments>
+      inline void log_info( char const* msg, arguments const& ...args )
+      {
+         if ( show_info )
+         {
+            log_->info( msg, args... );
+         }
+      }
+
+      template<typename... arguments>
+      inline void log_warning( char const* msg, arguments const& ...args )
+      {
+         if ( show_warnings )
+         {
+            log_->warn( msg, args... );
+         }
+      }
+
+      template<typename... arguments>
+      inline void log_error( char const* msg, arguments const& ...args )
+      {
+         if ( show_errors )
+         {
+            log_->error( msg, args... );
+         }
       }
 
    private:
@@ -119,9 +113,6 @@ namespace bzr
       bool show_warnings;
       bool show_critical;
       bool show_errors;
-
-      [[deprecated]]
-      inline static std::shared_ptr<spdlog::logger> logger_;
    };
 }
 

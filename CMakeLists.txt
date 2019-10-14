@@ -1,6 +1,8 @@
 cmake_minimum_required( VERSION 3.15 )
 project( wmbats_bazaar )
 
+option( test "Build all test." OFF )
+
 add_subdirectory( external/spdlog )
 
 add_library( wmbats_bazaar INTERFACE )
@@ -19,3 +21,8 @@ target_include_directories( wmbats_bazaar
     INTERFACE 
         "includes" 
 )
+
+if( test )
+   add_subdirectory( external/googletest )
+   add_subdirectory( test )
+endif( test )
