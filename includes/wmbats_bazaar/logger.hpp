@@ -55,7 +55,8 @@ namespace bzr
        *
        * @param msg The message to log.
        */
-      inline void log_info( std::string const& msg )
+      template<typename T>
+      inline void log_info( T const& msg )
       {
          if ( show_info )
          {
@@ -63,7 +64,8 @@ namespace bzr
          }
       }
 
-      inline void log_warning( std::string const& msg )
+      template<typename T>
+      inline void log_warning( T const& msg )
       {
          if ( show_warnings )
          {
@@ -71,7 +73,8 @@ namespace bzr
          }
       }
 
-      inline void log_error( std::string const& msg )
+      template<typename T>
+      inline void log_error( T const& msg )
       {
          if ( show_errors )
          {
@@ -80,7 +83,7 @@ namespace bzr
       }
 
       template<typename... arguments>
-      inline void log_info( char const* msg, arguments const& ...args )
+      inline void log_info( std::string_view msg, arguments const& ...args )
       {
          if ( show_info )
          {
@@ -89,7 +92,7 @@ namespace bzr
       }
 
       template<typename... arguments>
-      inline void log_warning( char const* msg, arguments const& ...args )
+      inline void log_warning( std::string_view msg, arguments const& ...args )
       {
          if ( show_warnings )
          {
@@ -98,7 +101,7 @@ namespace bzr
       }
 
       template<typename... arguments>
-      inline void log_error( char const* msg, arguments const& ...args )
+      inline void log_error( std::string_view msg, arguments const& ...args )
       {
          if ( show_errors )
          {
