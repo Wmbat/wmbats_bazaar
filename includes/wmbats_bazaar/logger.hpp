@@ -75,7 +75,7 @@ namespace bzr
       {
          if ( show_errors )
          {
-            log_->error( msg )
+            log_->error( msg );
          }
       }
 
