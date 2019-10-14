@@ -3,8 +3,6 @@ project( wmbats_bazaar )
 
 option( test "Build all test." OFF )
 
-add_subdirectory( external/spdlog )
-
 add_library( wmbats_bazaar INTERFACE )
 
 target_compile_features( wmbats_bazaar 
@@ -14,7 +12,6 @@ target_compile_features( wmbats_bazaar
 
 target_link_libraries( wmbats_bazaar 
     INTERFACE 
-        spdlog 
 )
 
 target_include_directories( wmbats_bazaar 
